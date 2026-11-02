@@ -1,0 +1,27 @@
+CORRECTED PRACTICE NAVIGATION
+
+This version fixes a navigation bug and adds a permanent, visible button:
+"Practice activities (12)" beside "Lecture controls".
+
+1. Download this package's index.html.
+2. Make sure its name is exactly index.html, without a number or extra space.
+3. In your GitHub repository choose Add file > Upload files.
+4. Upload index.html to replace the existing root index.html and commit changes.
+5. Wait for GitHub Pages to publish, then refresh the lecture.
+
+You should immediately see a dark-blue Practice activities (12) button near the
+top of the page. It opens the menu from anywhere in the lecture.
+
+All 12 ungraded activities and all original lecture records remain included.
+No grades are submitted or saved. These are custom HTML activities inspired by H5P.
+
+FIXES VERIFIED IN THE BROWSER
+- Section IDs now agree with their numbered links.
+- Passive scrolling no longer overwrites requested activity links.
+- Direct activity links land at the activity and remain there after reload.
+- The Practice button opens the complete menu.
+- The menu's links move directly to each activity.
+- Phone-sized testing confirms the button is visible and does not overlap controls.
+
+The assistant has prepared and tested this replacement but has not uploaded it
+to GitHub. The visible button appears on your live site after this file is uploaded.
