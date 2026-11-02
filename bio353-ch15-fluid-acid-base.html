@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO353 Chapter 15: Fluid and Acid–Base Balance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* === FIXED 16:9 STAGE BASE (from the Frontend Slides skill, unmodified) === */
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+
+/* === THEME: oat paper, ink-blue, dusty rose; serif + mono labels === */
+:root{--blue:#1f3f73;--blue-d:#182f58;--blue-l:#2d5190;--rose:#e89cb1;--rose-d:#d27e96;--cream:#efe7d4;--cream2:#e6dcc4;--ink:#1a1a17;--note:#a61e1e;--stage-bg:#0e1a30;--slide-bg:#efe7d4;
+ --serif:'Source Serif 4',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+.deck-viewport{bottom:76px}
+*{box-sizing:border-box}
+.slide{font-family:var(--serif);color:var(--ink);padding:70px 120px 0}
+.slide .lab{font:500 24px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.slide h2{margin:14px 0 0;font:500 70px/1.04 var(--serif);letter-spacing:-.01em;color:var(--blue);max-width:1620px}
+.slide .rule{height:2px;background:var(--blue);margin:26px 0 34px;width:1680px}
+.slide.has-fig .body{display:grid;grid-template-columns:880px 1fr;gap:60px;align-items:start}
+.slide ul{list-style:none;margin:0;padding:0;font-size:34px;line-height:1.34}
+.slide.sm ul{font-size:30px}.slide.xs ul{font-size:27px;line-height:1.28}
+.slide.cols ul{column-count:2;column-gap:70px}
+.slide li{margin:0 0 .5em;padding-left:1.1em;position:relative;break-inside:avoid}
+.slide li::before{content:"";position:absolute;left:.1em;top:.62em;width:.28em;height:.28em;border-radius:50%;background:var(--blue)}
+.slide li.m::before{display:none}.mk{position:absolute;left:0;font:500 .72em var(--mono);color:var(--blue);top:.2em}
+.slide li.m{padding-left:1.7em}
+.slide li.l1{margin-left:56px}.slide li.l2{margin-left:112px}.slide li.l3{margin-left:168px}
+.slide li.l1::before,.slide li.l2::before{border-radius:0;height:2px;width:.5em;top:.7em}
+.in{color:var(--note);border-bottom:2px dotted var(--note);font-weight:500}
+.in::before,.in::after{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.in::before{content:"[Instructor note: "}.in::after{content:"]"}
+.hidein .in{color:inherit;border-bottom:0;font-weight:inherit}.hidein .in::before,.hidein .in::after{content:none}
+.ref{position:absolute;left:120px;bottom:40px;font:500 22px var(--mono);letter-spacing:.05em;color:#4d4a3d}
+.pg{position:absolute;right:120px;bottom:40px;font:500 22px var(--mono);color:#4d4a3d}
+.fig{margin:0}.fig svg{width:100%;height:auto;display:block;background:var(--cream2);border:2px solid var(--blue);border-radius:6px}
+.fig figcaption{font:500 21px/1.35 var(--mono);letter-spacing:.04em;color:#4d4a3d;margin-top:12px}
+.ph{height:560px;border:2px dashed var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;font:500 26px/1.5 var(--mono);color:var(--blue);padding:40px;background:var(--cream2)}
+table.t{border-collapse:collapse;width:100%;font-size:34px}
+.t th,.t td{padding:14px 18px;text-align:left;border-bottom:2px solid #1f3f7355}.t th{font:500 24px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--blue);border-bottom:2px solid var(--blue)}
+.t td:first-child{font-weight:600;color:var(--blue)}
+.slide.tbl .t{max-width:1500px}
+.t.t5{font-size:26px;line-height:1.35}.t5 td{vertical-align:top}
+.slide.nt .body{display:block}.slide.nt .fig{display:grid;grid-template-columns:780px 1fr;gap:50px;align-items:start}.slide.nt .fig figcaption{margin-top:0}
+/* cover */
+.slide.cover{background:var(--cream);padding:0}
+.cover .panel{position:absolute;right:0;top:0;width:620px;height:1080px;background:var(--blue);color:var(--cream);padding:110px 64px;overflow:hidden}
+.cover .panel h3{margin:0 0 48px;font:500 24px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}
+.cover .step{border-top:2px solid #efe7d455;padding:26px 0 32px}.cover .step em{display:block;font:500 24px var(--mono);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--rose)}
+.cover .step strong{display:block;margin-top:6px;font:500 56px/1.1 var(--serif)}
+.cover .dot{position:absolute;right:-120px;bottom:-140px;width:420px;height:420px;border-radius:50%;background:var(--rose)}
+.cover .k{position:absolute;left:120px;top:110px;font:500 28px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.cover .rl{position:absolute;left:120px;top:170px;width:1000px;height:2px;background:var(--blue)}
+.cover h1{position:absolute;left:120px;top:215px;width:1100px;margin:0;font:500 148px/1 var(--serif);color:var(--blue);letter-spacing:-.02em}
+.cover .sub{position:absolute;left:120px;top:560px;font:italic 500 58px var(--serif)}
+.cover .hint{position:absolute;left:120px;top:690px;width:1000px;font-size:30px;line-height:1.4}
+.cover .hint kbd,.help kbd{font:500 .8em var(--mono);border:2px solid var(--blue);border-radius:5px;padding:0 8px;background:var(--cream2)}
+/* quiz */
+.quiz{max-width:1500px}.quiz .q{font-size:42px;line-height:1.28;margin:0 0 30px;max-width:1500px}
+.opts{display:grid;gap:16px;margin:0;padding:0;border:0}
+.opt{font:400 32px/1.3 var(--serif);text-align:left;padding:16px 24px 16px 70px;position:relative;background:var(--cream2);border:2px solid var(--blue);border-radius:6px;color:var(--ink);cursor:pointer;max-width:1500px}
+.opt::before{content:attr(data-k);position:absolute;left:22px;top:18px;font:500 26px var(--mono);color:var(--blue)}
+.opt:hover{background:#ddd2b6}
+.opt.ok{background:var(--blue);color:var(--cream)}.opt.ok::before{content:"✓";color:var(--rose)}
+.opt.no{border-style:dashed;border-color:var(--note)}.opt.no::before{content:"✗";color:var(--note)}
+.fb{margin-top:24px;font-size:30px;line-height:1.35;max-width:1500px;min-height:2.7em}.fb strong{color:var(--blue)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+button,select{font:500 18px var(--mono)}
+/* controls */
+.deck-controls{left:0;right:0;bottom:0;transform:none;height:76px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:8px 12px;background:#0e1a30;color:#efe7d4}
+.deck-controls button,.deck-controls select{background:var(--cream);color:var(--ink);border:2px solid var(--cream);border-radius:6px;padding:8px 14px;min-height:44px;cursor:pointer}
+.deck-controls button[aria-pressed="true"]{background:var(--rose);border-color:var(--rose)}
+.deck-controls select{max-width:300px}
+.deck-controls .ct{font:500 18px var(--mono);min-width:150px;text-align:center}
+:focus-visible{outline:4px solid #f5c542;outline-offset:2px}
+.help{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);width:min(680px,92vw);background:var(--cream);color:var(--ink);border:2px solid var(--blue);border-radius:8px;padding:18px 24px;font:400 18px/1.7 var(--serif);z-index:1100}
+.help[hidden]{display:none}
+.skip{position:fixed;left:8px;top:-60px;background:#f5c542;color:#000;padding:10px 14px;z-index:2000;font:500 16px var(--mono)}.skip:focus{top:8px}
+@media (prefers-reduced-motion:no-preference){.slide.active .body,.slide.active h2{animation:up .6s cubic-bezier(.2,.7,.2,1) both}.slide.active .body{animation-delay:.1s}}
+@keyframes up{from{opacity:0;transform:translateY(18px)}}
+/* === COMPANION (readable, scrolling, reflowing page) === */
+#comp{position:fixed;inset:0;overflow:auto;background:var(--cream);color:var(--ink);font:400 20px/1.65 var(--serif);display:none}
+body.companion #comp{display:block}body.companion .deck-viewport,body.companion .deck-controls .dk{display:none}
+body.companion{overflow:auto}
+#comp .wrap{max-width:780px;margin:0 auto;padding:28px 22px 90px}
+#comp h1{font:500 2.3rem/1.1 var(--serif);color:var(--blue);margin:.2em 0}
+#comp h2{font:500 1.7rem/1.2 var(--serif);color:var(--blue);margin:0 0 .3em}
+#comp h3.sec{font:500 .85rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--rose-d);border-top:2px solid var(--blue);padding-top:14px;margin:2.6em 0 0}
+#comp .meta{font:500 .8rem var(--mono);color:#4d4a3d;letter-spacing:.04em;margin:0 0 .6em}
+#comp article{margin:1.2em 0 1.8em}
+#comp ul{list-style:none;padding:0;margin:.4em 0}
+#comp li{position:relative;padding-left:1.1em;margin:.35em 0}#comp li::before{content:"•";position:absolute;left:0;color:var(--blue)}
+#comp li.m::before{content:none}#comp .mk{position:static;margin-right:.5em}#comp li.m{padding-left:0}
+#comp li.l1{margin-left:1.4em}#comp li.l2{margin-left:2.8em}#comp li.l3{margin-left:4.2em}
+#comp nav ol{columns:2;font-size:.95rem;padding-left:1.2em}#comp nav a{color:var(--blue)}
+#comp .fig svg{max-height:none}#comp .ph{height:auto;min-height:160px;font-size:.9rem;padding:20px}
+#comp .opt{font-size:1rem;padding:12px 16px 12px 52px}#comp .q{font-size:1.15rem;line-height:1.4}#comp .fb{font-size:1rem;min-height:0}
+#comp .t{font-size:1rem}
+#comp .ack{border-top:2px solid var(--blue);margin-top:3em;padding-top:1em;font-size:.9rem}
+@media print{#comp{position:static;display:block!important;overflow:visible}.deck-controls,.help,.skip{display:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#comp-start" id="skip">Skip to companion text</a>
+<div class="deck-viewport" id="vp"><div class="deck-stage" id="stage" role="region" aria-label="Slides"></div></div>
+<div id="comp" tabindex="-1"></div>
+<div class="help" id="help" hidden role="note"><strong>Keyboard</strong><br><kbd>→</kbd> <kbd>Space</kbd> <kbd>PgDn</kbd> next · <kbd>←</kbd> <kbd>PgUp</kbd> previous · <kbd>Home</kbd> <kbd>End</kbd> first / last · <kbd>N</kbd> instructor-note highlight · <kbd>C</kbd> companion ⇄ slides · <kbd>?</kbd> this help · <kbd>Esc</kbd> close</div>
+<div class="deck-controls" role="toolbar" aria-label="Deck controls">
+  <span class="dk" style="display:contents">
+  <button id="prev" aria-label="Previous slide">← Prev</button>
+  <span class="ct" id="ct" aria-live="polite" role="status"></span>
+  <button id="next" aria-label="Next slide">Next →</button>
+  <label class="sr" for="jump">Jump to slide</label><select id="jump"></select>
+  <button id="nt" aria-pressed="true" title="Toggle highlighting of instructor notes (red text in the source slides)">Instructor notes</button>
+  </span>
+  <button id="cv" aria-pressed="false">Companion view</button>
+  <button id="hp" aria-expanded="false" aria-controls="help">Keys ?</button>
+</div>
+<script>
+/* === DATA: generated from "Week 11 Chapter 15.pptx". n = source slide number (0 = inserted knowledge check) === */
+var D=[{"n":1,"sec":"Cover","t":"Fluid and Acid–Base Balance","p":[],"cap":"","ack":"c"},{"n":2,"sec":"ECF volume and salt","t":"Fluid Balance","p":[{"l":0,"m":"","r":[["Water is the most abundant component of the body",0]]},{"l":0,"m":"","r":[["Body water is distributed between the ICF and the ECF compartments",0]]},{"l":1,"m":"","r":[["Proportion of H₂O in the major fluid compartments",0]]},{"l":2,"m":"","r":[["ICF compartment : two thirds ",0]]},{"l":2,"m":"","r":[["Plasma and interstitial fluid: one third ",0]]},{"l":1,"m":"","r":[["Minor ECF compartments",0]]},{"l":2,"m":"","r":[["Lymph and transcellular fluid",0]]}],"cap":"","ack":"c"},{"n":3,"sec":"ECF volume and salt","t":"Table 15-1: Major Body Fluid Compartments","p":[],"cap":"Table 15-1 Major Body Fluid Compartments","ack":"c","fig":"tbl1"},{"n":4,"sec":"ECF volume and salt","t":"Fluid Balance","p":[{"l":0,"m":"","r":[["Plasma and interstitial fluid are similar in composition, but ECF and ICF differ markedly",0]]},{"l":1,"m":"","r":[["The barrier between plasma and interstitial fluid: blood vessel walls",0]]},{"l":1,"m":"","r":[["The barrier between ECF and ICF: cellular plasma membranes",0]]}],"cap":"","ack":"c"},{"n":5,"sec":"ECF volume and salt","t":"Fluid Balance is Maintained by Regulating ECF Volume and Osmolarity","p":[{"l":0,"m":"","r":[["ECF volume must be closely regulated to help maintain blood pressure",0]]},{"l":1,"m":"","r":[["Maintaining salt balance is of primary importance in the long-term regulation of ECF volume",0]]},{"l":0,"m":"","r":[["ECF osmolarity must be closely regulated to prevent swelling or shrinking of cells",0]]},{"l":1,"m":"","r":[["Maintaining water balance is of primary importance in regulating ECF osmolarity",0]]}],"cap":"","ack":"c"},{"n":6,"sec":"ECF volume and salt","t":"Control of ECF Volume is Important in the Long-Term Regulation of Blood Pressure","p":[{"l":0,"m":"","r":[["Short-term control measures to maintain blood pressure",0]]},{"l":1,"m":"","r":[["The baroreceptor reflex alters cardiac output and total peripheral resistance",0]]},{"l":1,"m":"","r":[["Fluid shifts occur temporarily and automatically between plasma and interstitial fluid",0]]}],"cap":"","ack":"c"},{"n":7,"sec":"ECF volume and salt","t":"Long-Term Control Measures to Maintain Blood Pressure","p":[{"l":0,"m":"","r":[["Long-term regulation of blood pressure rests with the kidneys and the thirst mechanism, which control urinary output and fluid intake",0]]}],"cap":"","ack":"c"},{"n":8,"sec":"ECF volume and salt","t":"Control of Salt Balance is Primarily Important in Regulating ECF Volume","p":[{"l":0,"m":"","r":[["To maintain salt balance at a set level, salt input must equal salt output",0]]},{"l":1,"m":"","r":[["Prevent salt accumulation or deficit in the body",0]]},{"l":0,"m":"","r":[["Poor control of salt intake",0]]},{"l":1,"m":"","r":[["Humans typically consume salt in excess of needs",0]]},{"l":0,"m":"","r":[["Precise control of salt output in the urine ",0]]},{"l":1,"m":"","r":[["Avenues for salt output: sweat, feces, and urine",0]]}],"cap":"","ack":"c"},{"n":9,"sec":"ECF volume and salt","t":"Figure 15-3: Dual Effect of a Fall in Arterial Blood Pressure on Renal Handling of Na⁺","p":[],"cap":"Figure 15-3 Dual effect of a fall in arterial blood pressure on renal handling of Na+.","ack":"c","fig":"salt"},{"n":10,"sec":"Osmolarity","t":"Controlling ECF Osmolarity Prevents Changes in ICF Volume","p":[{"l":0,"m":"","r":[["Osmolarity of a fluid ",0]]},{"l":1,"m":"","r":[["Measure of the concentration of the individual solute particles dissolved in it",0]]},{"l":0,"m":"","r":[["Ions responsible for ECF and ICF osmolarity",0]]},{"l":1,"m":"","r":[["Na⁺, Cl⁻, and K⁺",0]]},{"l":0,"m":"","r":[["Importance of regulating ECF osmolarity",0]]},{"l":1,"m":"","r":[["Due to Hypertonic and hypotonic conditions",0]]}],"cap":"","ack":"c"},{"n":11,"sec":"Osmolarity","t":"During ECF Hypertonicity, Cells Shrink as H₂O Leaves Them","p":[{"l":0,"m":"","r":[["Causes of hypertonicity (dehydration)",0]]},{"l":1,"m":"","r":[["Insufficient H₂O intake or excessive H₂O loss",0]]},{"l":1,"m":"","r":[["Example, Diabetes insipidus",0]]},{"l":0,"m":"","r":[["Direction and resulting symptoms of water movement during hypertonicity",0]]},{"l":1,"m":"","r":[["When ECF compartment becomes hypertonic, H₂O moves out of the cells by osmosis into the more concentrated ECF",0]]},{"l":1,"m":"","r":[["Can result in Neural symptoms ",0]]}],"cap":"","ack":"c"},{"n":12,"sec":"Osmolarity","t":"During ECF Hypotonicity, the Cells Swell as H₂O Enters Them","p":[{"l":0,"m":"","r":[["Causes of hypotonicity (overhydration)",0]]},{"l":1,"m":"","r":[["Renal failure or rapid H₂O ingestion",0]]},{"l":1,"m":"","r":[["Syndrome of inappropriate vasopressin secretion",0]]},{"l":0,"m":"","r":[["Direction and resulting symptoms of water movement during hypotonicity",0]]},{"l":1,"m":"","r":[["Excess free H₂O retention dilutes the ECF, making it hypotonic",0]]},{"l":1,"m":"","r":[["Can result in Neural and nonneural symptoms ",0]]}],"cap":"","ack":"c"},{"n":13,"sec":"Osmolarity","t":"No Water Moves Into or Out of Cells During an ECF Isotonic Fluid Gain or Loss","p":[{"l":1,"m":"","r":[["Examples: intravenous administration or hemorrhage ",0]]},{"l":0,"m":"","r":[["Vasopressin control of free H₂O balance is important in regulating ECF osmolarity",0]]},{"l":1,"m":"","r":[["Sources of H₂O input and output",0]]},{"l":1,"m":"","r":[["Factors regulated to maintain water balance",0]]},{"l":1,"m":"","r":[["Control of water output in urine by vasopressin",0]]},{"l":1,"m":"","r":[["Control of water input by thirst",0]]}],"cap":"","ack":"c"},{"n":0,"after":13,"sec":"Osmolarity","t":"Knowledge check","quiz":{"q":"A person is dehydrated: they lost water but not salt. The ECF becomes hypertonic. What happens to the cells?","o":["They shrink as water leaves them by osmosis","They swell as water enters them","Nothing, because no water crosses cell membranes","They swell only if the ECF is also isotonic"],"a":0,"e":"A hypertonic ECF is more concentrated than the cells, so H₂O moves out of the cells into the ECF by osmosis and the cells shrink (slide 11). Cells swell in hypotonicity (slide 12), and only an isotonic gain or loss leaves them unchanged (slide 13)."}},{"n":14,"sec":"Water balance","t":"Water Balance","p":[{"l":1,"m":"1)","r":[["Intake",0]]},{"l":2,"m":"a)","r":[["Gastrointestinal tract (drinking)",0]]},{"l":2,"m":"b)","r":[["Metabolism",0]]},{"l":1,"m":"2)","r":[["Output",0]]},{"l":2,"m":"a)","r":[["Insensible loss (evaporate across skin, mucous membranes)",0]]},{"l":2,"m":"b)","r":[["Sweating",0]]},{"l":2,"m":"c)","r":[["Gastrointestinal tract",0]]},{"l":2,"m":"d)","r":[["Kidneys",0]]},{"l":0,"m":"","r":[["To maintain water balance over time:",1]]},{"l":0,"m":"","r":[[" intake = output",1]]}],"cap":"","ack":"c"},{"n":15,"sec":"Water balance","t":"Water Balance Terms","p":[{"l":0,"m":"1)","r":[["Normovolemia",1],[" – normal blood volume",0]]},{"l":0,"m":"2)","r":[["Hypervolemia",1],[" – high blood volume due to positive water balance",0]]},{"l":0,"m":"3)","r":[["Hypovolemia",1],[" – low blood volume due to negative water balance",0]]}],"cap":"","ack":"c"},{"n":16,"sec":"Water balance","t":"Formation of Concentrated vs. Dilute Urine","p":[{"l":0,"m":"","r":[["Kidneys regulate volume of water in body",0]]},{"l":2,"m":"1)","r":[["Increased volume of extracellular fluid           ",0],["excrete large volume of dilute urine",1]]},{"l":2,"m":"2)","r":[["Decreased volume          ",0],["excrete small volume of concentrated urine",1],[" to conserve body water",0]]}],"cap":"","ack":"c"},{"n":17,"sec":"Water balance","t":"Water Reabsorption","p":[{"l":0,"m":"1)","r":[["Proximal tubules",0]]},{"l":1,"m":"a)","r":[["70% filtered water is reabsorbed",0]]},{"l":1,"m":"b)","r":[["Not regulated",2]]},{"l":0,"m":"2)","r":[["Desending Loop of Henle",0]]},{"l":1,"m":"a)","r":[["15% filtered water is reabsorbed ",0]]},{"l":1,"m":"b)","r":[["Not regulated",2]]},{"l":0,"m":"3)","r":[["Distal tubules and Collecting ducts",0]]},{"l":1,"m":"a)","r":[["Most remaining water is reabsorbed",0]]},{"l":1,"m":"b)","r":[["Regulated by ADH",1]]}],"cap":"","ack":"c"},{"n":18,"sec":"Water balance","t":"Medullary Osmotic Gradient for Water Reabsorption","p":[{"l":0,"m":"1)","r":[["Gradient critical for water reabsorption",0]]},{"l":0,"m":"2)","r":[["Osmolarity of body fluids = 300 mOsm",0]]},{"l":0,"m":"3)","r":[["Osmolarity of interstitial fluid of renal medulla ",0],["varies",2],[" with depth ",0]]},{"l":1,"m":"a)","r":[["Lower osmolarity near cortex",0]]},{"l":1,"m":"b)","r":[["Greater osmolarity deep in medulla",0]]}],"cap":"","ack":"c"},{"n":19,"sec":"Water balance","t":"Medullary Osmotic Gradient- produced by the different functions of tubule segments","p":[],"cap":"","ack":"p","fig":"grad"},{"n":20,"sec":"Water balance","t":"Counter-Current Multiplier in the Loop of Henle","p":[{"l":0,"m":"1)","r":[["Osmotic gradient established by counter-current multiplier",0]]},{"l":0,"m":"2)","r":[["Dependent on loop of Henle   ",0]]},{"l":0,"m":"3)","r":[["Descending Limb",0]]},{"l":1,"m":"a)","r":[["Permeable to water",0]]},{"l":1,"m":"b)","r":[["No transport of Na⁺, Cl⁻, or K⁺",0]]},{"l":0,"m":"4)","r":[["Ascending Limb",0]]},{"l":1,"m":"a)","r":[["Impermeable to water",0]]},{"l":1,"m":"b)","r":[["Active transport of Na⁺, Cl⁻, and K⁺ → (",0],["dependent on NK2C transporter)",1]]}],"cap":"","ack":"c"},{"n":21,"sec":"Water balance","t":"Counter-Current Multiplier","p":[],"cap":"","ack":"p","fig":"grad"},{"n":22,"sec":"Water balance","t":"Result of Counter-Current Multiplier","p":[{"l":0,"m":"1)","r":[["Fluid in distal tubule - 100 mOsm",0]]},{"l":0,"m":"2)","r":[["interstitial fluid of medulla – gradient up to 1400 → mOsm",0]]},{"l":0,"m":"3)","r":[["Large osmotic gradient in interstitial fluid favors reabsorption of water ",1],["from",3],[" the tubule by osmosis",1]]}],"cap":"","ack":"c"},{"n":23,"sec":"Water balance","t":"Osmotic Gradients of Late Distal Tubule  and Collecting Ducts","p":[{"l":0,"m":"","r":[["If epithelium impermeable to water, then no reabsorption occurs",0]]},{"l":0,"m":"","r":[["If permeable, water will move by osmosis and be reabsorbed back into blood ",0]]}],"cap":"","ack":"p","fig":"adh"},{"n":24,"sec":"Water balance","t":"Water Reabsorption in Distal Tubules  and Collecting Ducts","p":[{"l":0,"m":"1)","r":[["Dependent on epithelium permeability to water ",0]]},{"l":0,"m":"2)","r":[["Water permeability dependent on water channels",0]]},{"l":1,"m":"a)","r":[["Aquaporin-2: present in apical membrane only when ADH present in blood",1]]}],"cap":"","ack":"c"},{"n":25,"sec":"Water balance","t":"Permeable Membrane in Presence of ADH","p":[{"l":0,"m":"1)","r":[["ADH stimulates insertion of water channels (aquaporin-2) into apical membrane.",0]]},{"l":1,"m":"a)","r":[["Water can permeate membrane and be reabsorbed by osmosis",0]]},{"l":0,"m":"2)","r":[["Excrete small volume of concentrated urine",1]]},{"l":0,"m":"3)","r":[["Max osmolarity urine = 1400 mOsm",0]]}],"cap":"","ack":"c","fig":"adh"},{"n":26,"sec":"Water balance","t":"Vasopressin Secretion and Thirst are Largely Triggered Simultaneously","p":[{"l":0,"m":"","r":[["Role of hypothalamic osmoreceptors",0]]},{"l":0,"m":"","r":[["Role of left atrial volume receptors",0]]},{"l":0,"m":"","r":[["Role of angiotensin II",0]]},{"l":0,"m":"","r":[["Regulatory factors that do not link vasopressin and thirst",0]]},{"l":0,"m":"","r":[["Oral metering",0]]},{"l":0,"m":"","r":[["Nonphysiological influences on fluid intake",0]]}],"cap":"","ack":"c"},{"n":27,"sec":"Water balance","t":"Figure 15-4: Control of Vasopressin Secretion and Thirst During a H₂O Deficit","p":[],"cap":"Figure 15-4 Control of increased vasopressin secretion and thirst during a H2O deficit.","ack":"c","fig":"vaso"},{"n":28,"sec":"Water balance","t":"Table 15-5: Summary of the Regulation of ECF Volume and Osmolarity","p":[],"cap":"Table 15-5 Summary of the Regulation of ECF Volume and Osmolarity","ack":"c","fig":"tbl5"},{"n":0,"after":28,"sec":"Water balance","t":"Knowledge check","quiz":{"q":"Which part of the nephron has water reabsorption that is regulated by ADH?","o":["Proximal tubule","Descending limb of the loop of Henle","Distal tubule and collecting duct","Ascending limb of the loop of Henle"],"a":2,"e":"About 70% of filtered water is reabsorbed in the proximal tubule and about 15% in the descending limb, and neither is regulated. In the distal tubule and collecting duct, ADH inserts aquaporin-2 into the apical membrane, making the epithelium water-permeable (slides 17, 24, 25). The ascending limb is impermeable to water."}},{"n":29,"sec":"Acids, bases and pH","t":"Acid–Base Balance","p":[{"l":0,"m":"","r":[["Acid–base balance",0]]},{"l":1,"m":"","r":[["Precise regulation of free hydrogen ion concentration in the body fluids",0]]},{"l":0,"m":"","r":[["The pH designation is used to express [H⁺]",0]]},{"l":0,"m":"1)","r":[["Acids: molecules that release free H⁺",0]]},{"l":2,"m":"","r":[["Example: hydrochloric acid: HCl → H⁺  +  Cl⁻ → carbonic acid: H₂CO₃ ⇌ H⁺  +  HCO₃⁻",0]]},{"l":0,"m":"2)","r":[["Bases: molecules that bind free H⁺",0]]},{"l":2,"m":"","r":[["HCO₃⁻   +  H⁺ ⇌ H₂CO₃ ",0]]},{"l":1,"m":"","r":[["Proteins",0]]},{"l":1,"m":"","r":[["Hemoglobin",0]]},{"l":0,"m":"","r":[["Also bind free H⁺",0]]}],"cap":"","ack":"c"},{"n":30,"sec":"Acids, bases and pH","t":"Normal pH and Its Disturbances","p":[{"l":0,"m":"1)","r":[["Normal pH of arterial blood = 7.35 – 7.45",0]]},{"l":1,"m":"a)","r":[["pH < 7.35 = acidosis",0]]},{"l":1,"m":"b)","r":[["pH > 7.45 = alkalosis",0]]},{"l":0,"m":"2)","r":[["pH < 6.8 or pH > 8.0 = death",1]]},{"l":0,"m":"3)","r":[["Complications with acid-base disturbance",0]]},{"l":1,"m":"a)","r":[["Conformation change in protein structure",0]]},{"l":1,"m":"b)","r":[["Changes in excitability of neurons",0]]},{"l":1,"m":"c)","r":[["Changes in potassium balance",0]]},{"l":1,"m":"d)","r":[["Cardiac arrhythmias",0]]},{"l":1,"m":"e)","r":[["Vasodilation",0]]}],"cap":"","ack":"c"},{"n":31,"sec":"Acids, bases and pH","t":"Sources of H⁺","p":[{"l":0,"m":"1)","r":[["Most disturbances in pH involve additions of acids",0]]},{"l":0,"m":"2)","r":[["H⁺ are constantly being added to the body; must be neutralized or excreted from body to maintain proper pH",1]]},{"l":0,"m":"3)","r":[["Sources of H⁺ :",0]]},{"l":1,"m":"a)","r":[["Metabolic: CO₂ (CO₂ + H₂0 ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻)",0]]},{"l":1,"m":"b)","r":[["Organic acids in body (lactic acid, fatty acids)",0]]},{"l":1,"m":"c)","r":[["Dietary proteins: contain ",0],["sulfu",2],["r and ",0],["phosphorus",2]]},{"l":0,"m":"","r":[["Sulfuric acid",0]]},{"l":0,"m":"","r":[["Phosphoric acid",0]]}],"cap":"","ack":"c"},{"n":32,"sec":"Defenses: buffers","t":"Defense Mechanisms Against Acid-Base Disturbances","p":[{"l":0,"m":"","r":[["Three lines of defense:",0]]},{"l":1,"m":"1)","r":[["Buffering of hydrogen ions",0]]},{"l":1,"m":"2)","r":[["Respiratory compensation",0]]},{"l":1,"m":"3)","r":[["Renal compensation",0]]}],"cap":"","ack":"c"},{"n":33,"sec":"Defenses: buffers","t":"Buffering","p":[{"l":1,"m":"1)","r":[["Quickest defense against changes in pH",1]]},{"l":2,"m":"a)","r":[["Immediate response",0]]},{"l":1,"m":"2)","r":[["Buffers are pairs of ules that can either bind free H⁺ or release H⁺ depending on the acid-base balance",0]]},{"l":1,"m":"3)","r":[["Most important ECF buffers = ",1],["bicarbonate/carbonic acid",3]]},{"l":2,"m":"a)","r":[["HCO₃⁻ + H⁺  H₂CO₃",0]]},{"l":1,"m":"4)","r":[["Most important intracellular buffers:",1]]},{"l":2,"m":"a)","r":[["Proteins",2],[": Protein⁻ + H⁺  H·Protein",0]]},{"l":2,"m":"b)","r":[["Phosphates",2],[": HPO₄²⁻ + H⁺  H₂PO₄⁻",0]]},{"l":0,"m":"","r":[["Carbonic acid",0]]},{"l":0,"m":"","r":[["Bicarbonate",0]]}],"cap":"","ack":"c"},{"n":34,"sec":"Defenses: buffers","t":"Figure 15-8: Action of Chemical Buffers","p":[],"cap":"Figure 15-8 Action of chemical buffers. (a) Addition of HCl to an unbuffered solution. All the added hydrogen ions (H+) remain free and contribute to the acidity of the solution. (b) Addition of HCl to a buffered solution. Bicarbonate ions (HCO3-), the basic member of the buffer pair, bind with some of the added H+ and remove them from solution so that they do not contribute to its acidity.","ack":"c","fig":"buf"},{"n":35,"sec":"Defenses: buffers","t":"Phosphate Buffer and Chemical Buffer Systems","p":[{"l":0,"m":"","r":[["The phosphate buffer system is an important urinary buffer",0]]},{"l":1,"m":"","r":[["Can alternately switch a H⁺ for a Na⁺ as demanded by the [H⁺]",0]]},{"l":0,"m":"","r":[["Chemical buffer systems act as the first line of defense against changes in [H⁺]",0]]},{"l":1,"m":"","r":[["All chemical buffer systems act immediately, within fractions of a second, to minimize changes in pH",0]]}],"cap":"","ack":"c"},{"n":36,"sec":"Defenses: buffers","t":"Protein Buffer and Hemoglobin Buffer Systems","p":[{"l":0,"m":"","r":[["The protein buffer system is primarily important intracellularly",0]]},{"l":1,"m":"","r":[["Proteins: most plentiful buffers of body fluids",0]]},{"l":2,"m":"","r":[["Contain both acidic and basic groups that can give up or take up H⁺",0]]},{"l":0,"m":"","r":[["The hemoglobin buffer system buffers H⁺ generated from CO₂",0]]},{"l":1,"m":"","r":[["Hemoglobin (Hb) buffers the H⁺ generated from metabolically produced CO₂ in transit between the tissues and the lungs",0]]}],"cap":"","ack":"c"},{"n":37,"sec":"Defenses: respiration","t":"Respiratory System","p":[{"l":0,"m":"","r":[["The respiratory system regulates [H⁺] by controlling the rate of CO₂ removal",0]]},{"l":1,"m":"","r":[["Able to alter pulmonary ventilation and excretion of H⁺- generating CO₂",0]]},{"l":0,"m":"","r":[["The respiratory system serves as the second line of defense against changes in [H⁺]",0]]},{"l":1,"m":"","r":[["Acts at a moderate speed when chemical buffer systems alone cannot minimize [H⁺] changes",0]]}],"cap":"","ack":"c"},{"n":38,"sec":"Defenses: respiration","t":"Respiratory Compensation","p":[{"l":1,"m":"1)","r":[["2nd line of defense",1]]},{"l":2,"m":"a)","r":[["Takes minutes to have effect",0]]},{"l":1,"m":"2)","r":[["Regulates pH by varying ventilation",1]]},{"l":2,"m":"a)","r":[["Increase ventilation  decreases CO₂ (“blow off” excess CO₂) to raise pH (less acid)",0]]},{"l":2,"m":"b)","r":[["Decrease ventilation  increases CO₂ (CO₂ accumulates)",0]]},{"l":0,"m":"","r":[["CO₂ + H₂O  H₂CO₃  H⁺ + HCO₃⁻",0]]}],"cap":"","ack":"c"},{"n":39,"sec":"Defenses: kidneys","t":"Renal Compensation","p":[{"l":0,"m":"","r":[["3rd line of defense",1]]},{"l":1,"m":"","r":[["takes hours to days",0]]},{"l":0,"m":"1)","r":[["Regulate excretion of hydrogen ions and bicarbonate in urine",0]]},{"l":0,"m":"2)","r":[["Regulate synthesis of new bicarbonate in renal tubules",0]]}],"cap":"","ack":"c"},{"n":0,"after":39,"sec":"Defenses: kidneys","t":"Knowledge check","quiz":{"q":"Which order lists the three lines of defense against pH change from fastest to slowest?","o":["Renal compensation, respiratory compensation, buffering","Buffering, respiratory compensation, renal compensation","Respiratory compensation, buffering, renal compensation","Buffering, renal compensation, respiratory compensation"],"a":1,"e":"Buffers act immediately, respiratory compensation takes minutes, and renal compensation takes hours to days (slides 33, 38, 39). A common mix-up is putting the kidneys second because they handle H⁺ directly, but they are the slowest."}},{"n":40,"sec":"Defenses: kidneys","t":"Respiratory Compensation for Acidosis","p":[],"cap":"","ack":"p","fig":"resp"},{"n":41,"sec":"Defenses: kidneys","t":"The Kidneys Adjust Their Rate of H⁺ Excretion","p":[{"l":0,"m":"","r":[["By varying the extent of H⁺ secretion",0]]},{"l":1,"m":"","r":[["Mechanism of renal H⁺ secretion in the proximal tubule",0]]},{"l":2,"m":"","r":[["H⁺ ATPase pumps and Na⁺-H⁺ antiporters",0]]},{"l":1,"m":"","r":[["Mechanism of renal H⁺ secretion in the distal and collecting tubules",0]]},{"l":2,"m":"","r":[["Type A and B intercalated cells",0]]}],"cap":"","ack":"c"},{"n":42,"sec":"Defenses: kidneys","t":"Renal Compensation","p":[{"l":1,"m":"","r":[["Increase in acidity of body fluids causes:",0]]},{"l":2,"m":"1)","r":[["Increased ",1],["secretion",3],[" of hydrogen ions",1]]},{"l":3,"m":"a)","r":[["H⁺ lost from body in urine",0]]},{"l":2,"m":"2)","r":[["Increased ",1],["reabsorption",3],[" of bicarbonate",1]]},{"l":3,"m":"a)","r":[["less lost in urine; more in plasma",0]]},{"l":2,"m":"3)","r":[["Increased synthesis of ",1],["new",3],[" bicarbonate",1]]},{"l":3,"m":"a)","r":[["more in plasma",0]]}],"cap":"","ack":"c"},{"n":43,"sec":"Defenses: kidneys","t":"Renal Handling of Hydrogen  and Bicarbonate Ions","p":[{"l":0,"m":"1)","r":[["Proximal tubule",0]]},{"l":1,"m":"a)","r":[["Bicarbonate reabsorption coupled to hydrogen ion secretion",1]]},{"l":0,"m":"2)","r":[["Distal tubule and collecting duct ",0]]},{"l":1,"m":"a)","r":[["Secretion of hydrogen ions ",1]]}],"cap":"","ack":"c"},{"n":44,"sec":"Defenses: kidneys","t":"Proximal Tubule","p":[{"l":0,"m":"","r":[["Note: H⁺ is secreted into tubule lumen and excreted; ",0]]}],"cap":"","ack":"p","fig":"prox"},{"n":45,"sec":"Defenses: kidneys","t":"Distal Tubule and Collecting Duct","p":[{"l":0,"m":"","r":[["Note: H⁺ secreted into tubule lumen and excreted in urine;",0]]}],"cap":"","ack":"p","fig":"dist"},{"n":46,"sec":"Defenses: kidneys","t":"Figure 15-12: Control of Tubular H⁺ Secretion and HCO₃⁻ Reabsorption","p":[],"cap":"Figure 15-12 Control of the rate of tubular H+ secretion and HCO3- reabsorption.","ack":"c","fig":"hcl"},{"n":47,"sec":"Summary","t":"Acid-Base Homeostasis-Summary","p":[{"l":0,"m":"","r":[["If body fluids too acidic:",1]]},{"l":1,"m":"1)","r":[["HCO₃⁻ buffers (binds) free H⁺ to make pH more alkaline",0]]},{"l":1,"m":"2)","r":[["Respiratory system increases ventilation to “blow off” carbon dioxide (reduces the free H⁺ in body and makes less acidic)",0]]},{"l":1,"m":"3)","r":[["In kidney, tubule cells increase the secretion of H⁺ into the nephron to be excreted in urine (H⁺ removed from body)",0]]},{"l":1,"m":"4)","r":[["HCO₃⁻ reabsorption in nephron is increased (conserves it to be used as a buffer)",0]]}],"cap":"","ack":"c"},{"n":48,"sec":"Summary","t":"Summary- cont.","p":[{"l":0,"m":"","r":[["If body fluids are too alkaline:",1]]},{"l":2,"m":"1)","r":[["Carbonic acid (H₂CO₃) releases free H⁺ to make pH more acidic (buffered)",0]]},{"l":2,"m":"2)","r":[["Ventilation is reduced so CO₂ will accumulate (increases amount of free H⁺ → to raise acidity)",0]]},{"l":2,"m":"3)","r":[["In kidneys, H⁺ secretion into tubule is ",0],["reduced",2],[" so remains in the body",0]]},{"l":2,"m":"4)","r":[["HCO₃⁻ reabsorption is ",0],["decreased",2],[" so remains in tubule and is excreted in urine (removed from body)",0]]}],"cap":"","ack":"c"},{"n":0,"after":48,"sec":"Summary","t":"Knowledge check","quiz":{"q":"Body fluids are too alkaline. Which response is expected?","o":["Ventilation increases to blow off more CO₂","The kidneys increase H⁺ secretion","Ventilation is reduced so CO₂ accumulates","The kidneys increase HCO₃⁻ reabsorption"],"a":2,"e":"Lowering ventilation lets CO₂ accumulate, which adds H⁺ and raises acidity (slide 48). The other three responses are what the body does when fluids are too acidic (slide 47)."}},{"n":49,"sec":"Four disorders","t":"Deviations from Normal pH are Divided into Four Categories","p":[{"l":0,"m":"","r":[["Based on the primary cause:",0]]},{"l":1,"m":"1)","r":[["Respiratory acidosis",0]]},{"l":1,"m":"2)","r":[["Respiratory alkalosis",0]]},{"l":1,"m":"3)","r":[["Metabolic acidosis",0]]},{"l":1,"m":"4)","r":[["Metabolic alkalosis",0]]}],"cap":"","ack":"c"},{"n":50,"sec":"Four disorders","t":"Respiratory Acidosis","p":[{"l":0,"m":"1)","r":[["Cause: ",0],["Hypoventilation",1]]},{"l":1,"m":"a)","r":[["Lung disease, suppression of respiratory muscles, holding one’s breath",0]]},{"l":0,"m":"2)","r":[["Increased CO₂  Increased H⁺",0]]},{"l":0,"m":"3)","r":[["Compensation:  ",0],["Renal",1]]},{"l":1,"m":"a)","r":[["Increase H⁺ secretion",0]]},{"l":1,"m":"b)","r":[["Increase HCO₃⁻ reabsorption",0]]}],"cap":"","ack":"c"},{"n":51,"sec":"Four disorders","t":"Respiratory Alkalosis","p":[{"l":0,"m":"1)","r":[["Cause:  ",0],["Hyperventilation",1]]},{"l":1,"m":"a)","r":[["Anxiety, fever, aspirin poisoning",0]]},{"l":0,"m":"2)","r":[["Decreased CO₂  Decreased H⁺",0]]},{"l":0,"m":"3)","r":[["Compensation:  ",0],["Renal",1]]},{"l":1,"m":"a)","r":[["Decrease H⁺ secretion",0]]},{"l":1,"m":"b)","r":[["Decrease HCO₃⁻ reabsorption",0]]}],"cap":"","ack":"c"},{"n":52,"sec":"Four disorders","t":"Metabolic Acidosis","p":[{"l":0,"m":"1)","r":[["Cause: ",0],["Increased H⁺ independent of CO₂",1]]},{"l":1,"m":"a)","r":[["High protein diet",0]]},{"l":1,"m":"b)","r":[["High fat diet",0]]},{"l":1,"m":"c)","r":[["Heavy exercise (lactic acid)",0]]},{"l":1,"m":"d)","r":[["Severe diarrhea (loss of bicarbonate)",0]]},{"l":0,"m":"2)","r":[["Compensation: ",0],["Respiratory and Renal ",1],["(unless renal problem is the cause)",0]]},{"l":0,"m":"3)","r":[[" Respiratory compensation",0]]},{"l":1,"m":"a)","r":[["Increase ventilation  decrease CO₂",0]]},{"l":0,"m":"4)","r":[["Renal compensation ",0]]},{"l":1,"m":"a)","r":[["Increase H⁺ secretion",0]]},{"l":1,"m":"b)","r":[["Increase HCO₃⁻ reabsorption",0]]},{"l":1,"m":"c)","r":[["Increase synthesis of new bicarbonate",0]]}],"cap":"","ack":"c"},{"n":53,"sec":"Four disorders","t":"Metabolic Alkalosis","p":[{"l":0,"m":"1)","r":[["Cause: ",0],["Decreased H⁺ independent of CO₂",1]]},{"l":1,"m":"a)","r":[["Excessive vomiting (loss of hydrogen ions)",0]]},{"l":1,"m":"b)","r":[["Consumption of alkaline products (baking soda)",0]]},{"l":0,"m":"2)","r":[["Compensation: ",0],["Respiratory and Renal",1],[" (unless renal problem)",0]]},{"l":0,"m":"3)","r":[["Respiratory compensation",0]]},{"l":1,"m":"a)","r":[["Decrease ventilation  increase CO₂",0]]},{"l":0,"m":"4)","r":[["Renal compensation",0]]},{"l":1,"m":"a)","r":[["Decrease H⁺ secretion",0]]},{"l":1,"m":"b)","r":[["Decrease HCO₃⁻ reabsorption",0]]},{"l":1,"m":"c)","r":[["Decrease synthesis of new bicarbonate",0]]}],"cap":"","ack":"c"},{"n":0,"after":53,"sec":"Four disorders","t":"Knowledge check","quiz":{"q":"A patient has had excessive vomiting. Which disturbance is most likely, and how does breathing compensate?","o":["Respiratory acidosis; ventilation increases","Metabolic acidosis; ventilation increases","Metabolic alkalosis; ventilation decreases","Respiratory alkalosis; ventilation decreases"],"a":2,"e":"Vomiting loses hydrogen ions, which lowers H⁺ independent of CO₂ and so causes metabolic alkalosis. Decreased ventilation lets CO₂ rise to compensate (slide 53). The respiratory disorders start from a change in ventilation, not from H⁺ loss."}}];
+var ACK={c:'© Cengage Learning 2016. All Rights Reserved.',p:'Copyright © 2005 Pearson Education, Inc., publishing as Benjamin Cummings.'};
+var total=D.length,cur=0,stage=document.getElementById('stage'),comp=document.getElementById('comp');
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function sub(s){return esc(s).replace(/([A-Za-z])(\d)(?=\D|$)/g,function(m,a,b){return a+b}).replace(/\bH2O/g,'H₂O')}
+function lab(s){return s.n?('Source slide '+s.n+' · '+s.sec):('Knowledge check · inserted after source slide '+s.after)}
+function runs(p){return p.r.map(function(r){var t=esc(r[0]);if(r[1]&2)t='<u>'+t+'</u>';if(r[1]&1)t='<span class="in">'+t+'</span>';return t}).join('')}
+function items(s){return '<ul>'+s.p.map(function(p){return '<li class="l'+p.l+(p.m?' m':'')+'">'+(p.m?'<b class="mk">'+p.m+'</b>':'')+runs(p)+'</li>'}).join('')+'</ul>'}
+
+/* --- original diagrams (drawn for this deck; they replace the publisher figures) --- */
+function svgOpen(h,t){return '<svg viewBox="0 0 760 '+h+'" role="img" aria-label="'+t+'" font-family="JetBrains Mono,monospace" font-size="17">'}
+function dots(x,y,n,free){var o='';for(var i=0;i<n;i++){var f=i<free;o+='<circle cx="'+(x+i*64)+'" cy="'+y+'" r="20" fill="'+(f?'#d27e96':'#2d5190')+'"/><text x="'+(x+i*64)+'" y="'+(y+6)+'" text-anchor="middle" fill="#fff" font-size="16">'+(f?'H⁺':'H₂CO₃'.slice(0,0)+'H⁺')+'</text>'}return o}
+
+
+/* shared drawing helpers: box, arrow, text */
+var PB='#cfe0f2',PR='#f4c6d1',PT='#f1e2b8',PU='#d9bfdc',BL='#2d5190';
+function svgF(h,l){return svgOpen(h,l)+'<defs><marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f3f73"/></marker><marker id="mr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b04a68"/></marker></defs>'}
+function bx(x,y,w,h,t,f,c){var L=t.split('|'),o='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="6" fill="'+(f||'#efe7d4')+'" stroke="#1f3f73" stroke-width="2"/>';L.forEach(function(l,i){o+='<text x="'+(x+w/2)+'" y="'+(y+h/2+5-(L.length-1)*9+i*18)+'" text-anchor="middle" fill="'+(c||'#1a1a17')+'" font-size="16">'+l+'</text>'});return o}
+function ar(d,r){return '<path d="'+d+'" fill="none" stroke="'+(r?'#b04a68':'#1f3f73')+'" stroke-width="2.5" marker-end="url(#'+(r?'mr':'m')+')"/>'}
+function tx(x,y,t,s,c){return '<text x="'+x+'" y="'+y+'" font-size="'+(s||15)+'" fill="'+(c||'#1a1a17')+'">'+t+'</text>'}
+function cellFig(k){var s=svgF(580,k?'Intercalated cell in the distal tubule and collecting duct: H plus is secreted into the lumen and HCO3 minus is reabsorbed to the blood':'Proximal tubule cell: H plus is secreted into the lumen and HCO3 minus is reabsorbed to the blood');
+ s+='<rect x="20" y="40" width="230" height="330" fill="#f1e2b8"/><rect x="250" y="40" width="260" height="330" fill="#efe7d4"/><rect x="510" y="40" width="230" height="330" fill="#cfe0f2"/><rect x="20" y="40" width="720" height="330" fill="none" stroke="#1f3f73" stroke-width="2"/>';
+ s+=tx(30,28,'Tubular fluid',15,'#1f3f73')+tx(262,28,k?'Intercalated cell':'Proximal tubule cell',15,'#1f3f73')+tx(520,28,'Peritubular fluid',15,'#1f3f73');
+ s+=bx(290,70,150,34,'CO₂ + H₂O')+ar('M365 104 V134')+bx(290,134,150,34,'H₂CO₃ (via CA)')+ar('M365 168 V198')+bx(290,198,150,34,'H⁺  +  HCO₃⁻');
+ s+=ar('M290 215 H150',1)+tx(30,188,'H⁺ secreted into')+tx(30,244,'lumen, excreted')+tx(30,264,'in urine');
+ s+=ar('M440 215 H600')+tx(516,196,'HCO₃⁻ reabsorbed')+tx(516,244,'to the blood');
+ if(k){s+=bx(30,300,210,50,'H⁺ + HPO₄²⁻ → H₂PO₄⁻')+tx(262,300,'K⁺ moves in as H⁺ is out',14)+tx(516,276,'HCO₃⁻ leaves; Cl⁻ moves in',14)+tx(516,296,'(exchange); Cl⁻ exits',14)+tx(516,316,'through a channel',14)}
+ else{s+=bx(30,300,210,64,'Filtered HCO₃⁻ + H⁺|→ H₂CO₃ → H₂O + CO₂')+ar('M240 335 H268 V87 H290')+tx(262,300,'CO₂ diffuses into the cell',14)+tx(516,276,'HCO₃⁻ leaves with Na⁺',14)+tx(516,296,'(Cl⁻ exchange)',14)}
+ var K=k?['H⁺ is secreted into the lumen and excreted in urine; HCO₃⁻ is reabsorbed.','In the lumen, H⁺ combines with HPO₄²⁻ to form H₂PO₄⁻.','CA = carbonic anhydrase.']:['H⁺ is secreted into the lumen (H⁺ ATPase pumps and Na⁺–H⁺ antiporters)','and excreted; HCO₃⁻ is reabsorbed and returned to the blood.','Filtered HCO₃⁻ comes from plasma filtered in the glomeruli.','CA = carbonic anhydrase.'];
+ K.forEach(function(l,i){s+=tx(24,410+i*30,l,15)});return s+'</svg>'}
+function t5(){return '<table class="t t5"><caption class="sr">Summary of the regulation of ECF volume and osmolarity</caption><thead><tr><th>Regulated variable</th><th>Need to regulate the variable</th><th>Outcomes if the variable is not normal</th><th>Mechanism for regulating the variable</th></tr></thead><tbody><tr><td>ECF volume</td><td>Important in the long-term control of arterial blood pressure</td><td>↓ ECF volume → ↓ arterial blood pressure<br>↑ ECF volume → ↑ arterial blood pressure</td><td>Maintenance of salt balance; salt osmotically “holds” H₂O, so the Na⁺ load determines the ECF volume. Accomplished primarily by aldosterone-controlled adjustments in urinary Na⁺ excretion</td></tr><tr><td>ECF osmolarity</td><td>Important to prevent detrimental osmotic movement of H₂O between the ECF and ICF</td><td>↑ ECF osmolarity (hypertonicity) → H₂O leaves the cells → cells shrink<br>↓ ECF osmolarity (hypotonicity) → H₂O enters the cells → cells swell</td><td>Maintenance of free H₂O balance. Accomplished primarily by vasopressin-controlled adjustments in excretion of H₂O in the urine</td></tr></tbody></table>'}
+var DIAG={
+salt:function(){var s=svgF(620,'Flow chart: a fall in Na plus load and arterial blood pressure lowers GFR and raises aldosterone, which lowers Na plus excretion and conserves NaCl and fluid, relieving the fall');
+ s+=bx(230,10,300,44,'↓ Na⁺ load in body',PB)+bx(230,84,300,44,'↓ Arterial blood pressure',PB)+ar('M380 54 V84')+ar('M340 128 V152 H160 V186')+ar('M420 128 V152 H600 V186')+tx(120,160,'1',17)+tx(630,160,'2',17);
+ s+=bx(60,190,200,44,'↓ GFR',PR)+bx(500,190,200,44,'↑ Aldosterone',PR)+ar('M160 234 V266')+ar('M600 234 V266')+bx(60,270,200,44,'↓ Na⁺ filtered',PR)+bx(500,270,200,44,'↑ Na⁺ reabsorbed',PR);
+ s+=ar('M160 314 V346 H330 V374')+ar('M600 314 V346 H430 V374')+bx(200,378,360,64,'↓ Excretion of Na⁺ and|accompanying Cl⁻ and fluid',PT)+ar('M380 442 V478')+bx(200,482,360,64,'↑ Conservation of NaCl|and accompanying fluid',BL,'#fff');
+ s+=ar('M200 514 H30 V32 H226',1)+ar('M30 106 H226',1)+tx(40,26,'Relieves',15,'#b04a68')+tx(40,100,'Relieves',15,'#b04a68');
+ return s+tx(24,586,'1  Mechanism: see Figure 14-12.   2  Mechanism: see Figure 14-16.',14)+'</svg>'},
+vaso:function(){var s=svgF(700,'Flow chart: rising ECF osmolarity and falling ECF volume or blood pressure drive hypothalamic neurons to raise thirst and vasopressin, which restore osmolarity and volume');
+ s+=bx(500,6,230,36,'↓ ECF volume',PB)+bx(500,70,230,44,'↓ Arterial|blood pressure',PB)+ar('M615 42 V70')+bx(20,70,230,36,'↑ ECF osmolarity',PB);
+ s+=bx(20,150,290,84,'Hypothalamic osmoreceptors|(dominant factor controlling|thirst and vasopressin)',PU)+bx(450,150,290,84,'Left atrial volume receptors|(important only in large changes|in ECF volume / pressure)',PU)+ar('M135 106 V150')+tx(144,134,'+',17)+ar('M595 114 V150')+tx(604,134,'+',17);
+ s+=bx(250,274,260,36,'Hypothalamic neurons','#b890bd')+ar('M135 234 V292 H250')+ar('M595 234 V292 H510')+tx(180,284,'+',17)+tx(540,284,'+',17);
+ s+=bx(110,350,170,36,'↑ Thirst',PT)+bx(410,350,170,36,'↑ Vasopressin',PT)+ar('M360 310 V330 H195 V350')+ar('M400 310 V330 H495 V350');
+ s+=bx(610,338,140,64,'Arteriolar|vaso-|constriction',PB)+ar('M580 368 H608')+ar('M690 338 V92 H732',1);
+ s+=bx(110,430,170,36,'↑ H₂O intake',PT)+ar('M195 386 V430')+bx(410,430,220,64,'↑ H₂O permeability of|distal and collecting|tubules',PT)+ar('M495 386 V430')+bx(410,525,220,36,'↑ H₂O reabsorption',PT)+ar('M520 494 V525')+bx(410,590,220,36,'↓ Urine output',PT)+ar('M520 561 V590');
+ s+=bx(20,650,230,36,'↓ ECF osmolarity',PB)+bx(480,650,250,36,'↑ ECF volume',PB)+ar('M195 466 V650')+ar('M240 466 V626 H560 V650')+ar('M440 626 V638 H130 V650')+ar('M600 626 V650');
+ s+=ar('M20 668 H6 V88 H18',1)+ar('M730 668 H752 V24 H732',1);
+ return s+tx(262,690,'Rose arrows = negative feedback (“relieves”)',13)+'</svg>'},
+prox:function(){return cellFig(0)},dist:function(){return cellFig(1)},
+hcl:function(){var s=svgF(560,'Flow chart: a rise in plasma H plus raises H plus secretion and HCO3 minus conservation, which lowers plasma H plus and raises plasma HCO3 minus, relieving the rise');
+ s+=bx(230,20,300,60,'↑ Plasma [H⁺]|(or ↑ plasma [CO₂])',PR)+ar('M300 80 V110 H150 V150')+ar('M460 80 V110 H600 V150');
+ s+=bx(50,154,200,44,'↑ H⁺ secretion',PT)+ar('M150 198 V250')+bx(50,254,200,44,'↑ H⁺ excretion',PT)+ar('M150 298 V350')+bx(50,354,200,44,'↓ Plasma [H⁺]',PR);
+ s+=bx(500,154,220,44,'↑ HCO₃⁻ conservation',PB)+ar('M610 198 V250')+bx(500,254,220,44,'↓ HCO₃⁻ excretion',PB)+ar('M610 298 V350')+bx(500,354,220,44,'↑ Plasma [HCO₃⁻]',BL,'#fff');
+ s+=ar('M50 376 H20 V50 H226',1)+tx(30,44,'Alleviates',15,'#b04a68')+ar('M720 376 H744 V50 H534',1)+tx(640,44,'Buffers',15,'#b04a68');
+ return s+'</svg>'},
+
+buf:function(){var s=svgOpen(600,'Three H plus ions added to an unbuffered solution all stay free; added to a bicarbonate buffer, two are bound and one stays free');
+ s+='<text x="30" y="40" font-weight="bold">(a) Unbuffered NaCl solution + 3 HCl</text><rect x="30" y="56" width="700" height="200" rx="8" fill="#efe7d4" stroke="#1f3f73" stroke-width="2"/>'+dots(110,130,3,3)+'<text x="360" y="136" font-size="18">3 free H⁺ present:</text><text x="360" y="162" font-size="18">all added H⁺ stay free</text><text x="360" y="188" font-size="18">and add to acidity</text>';
+ s+='<text x="30" y="316" font-weight="bold">(b) H₂CO₃ : HCO₃⁻ buffer + 3 HCl</text><rect x="30" y="332" width="700" height="220" rx="8" fill="#efe7d4" stroke="#1f3f73" stroke-width="2"/>';
+ for(var i=0;i<2;i++){s+='<rect x="'+(60+i*110)+'" y="388" width="100" height="44" rx="22" fill="#2d5190"/><text x="'+(110+i*110)+'" y="416" text-anchor="middle" fill="#fff">HCO₃⁻</text><circle cx="'+(60+i*110)+'" cy="410" r="14" fill="#d27e96"/>'}
+ s+='<circle cx="320" cy="410" r="20" fill="#d27e96"/><text x="320" y="416" text-anchor="middle" fill="#fff" font-size="16">H⁺</text><text x="60" y="470" font-size="18">2 H⁺ bound by HCO₃⁻</text><text x="60" y="496" font-size="18">(become H₂CO₃)</text><text x="360" y="410" font-size="18">1 free H⁺ present:</text><text x="360" y="436" font-size="18">HCO₃⁻ binds H⁺ and</text><text x="360" y="462" font-size="18">reduces acidity</text>';
+ return s+'</svg>'},
+grad:function(){var s=svgOpen(640,'Loop of Henle drawn beside the medullary osmotic gradient, from about 300 mOsm near the cortex to up to 1400 mOsm deep in the medulla');
+ s+='<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe7d4"/><stop offset="1" stop-color="#1f3f73"/></linearGradient></defs><rect x="40" y="50" width="680" height="540" fill="url(#g)" stroke="#1f3f73" stroke-width="2"/>';
+ s+='<path d="M200 70 V500 Q200 560 270 560 Q340 560 340 500 V70" fill="none" stroke="#d27e96" stroke-width="22" stroke-linecap="round"/><path d="M200 120 V300" stroke="#fff" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>';
+ s+='<text x="40" y="34" font-weight="bold">Cortex ≈ 300 mOsm</text><text x="40" y="624" font-weight="bold" fill="#1a1a17">Deep medulla: up to 1400 mOsm</text>';
+ s+='<text x="380" y="130" font-size="17">Ascending limb:</text><text x="380" y="154" font-size="17">impermeable to H₂O;</text><text x="380" y="178" font-size="17">active transport of Na⁺,</text><text x="380" y="202" font-size="17">Cl⁻, K⁺ (NK2C)</text>';
+ s+='<text x="380" y="400" fill="#fff" font-size="17">Descending limb:</text><text x="380" y="424" fill="#fff" font-size="17">permeable to H₂O,</text><text x="380" y="448" fill="#fff" font-size="17">no Na⁺/Cl⁻/K⁺ transport</text>';
+ s+='<text x="60" y="400" fill="#fff" font-size="17">H₂O →</text><text x="60" y="130" font-size="17">Fluid to distal</text><text x="60" y="152" font-size="17">tubule: 100 mOsm</text>';
+ return s+'</svg>'},
+adh:function(){var s=svgOpen(560,'Collecting duct epithelium without ADH is water-impermeable; with ADH, aquaporin-2 channels are inserted in the apical membrane and water is reabsorbed');
+ s+='<text x="20" y="34" font-weight="bold">No ADH</text><text x="400" y="34" font-weight="bold">ADH present</text>';
+ [[20,0],[400,1]].forEach(function(p){var x=p[0];s+='<rect x="'+x+'" y="50" width="340" height="150" fill="#efe7d4"/><text x="'+(x+10)+'" y="76" font-size="15">Tubule lumen</text><rect x="'+x+'" y="200" width="340" height="30" fill="#2d5190"/>';
+  s+='<rect x="'+x+'" y="230" width="340" height="150" fill="#d8cfb4"/><text x="'+(x+10)+'" y="360" font-size="15">Blood side (high osmolarity)</text>';
+  if(p[1]){[70,160,250].forEach(function(c){s+='<rect x="'+c+'" y="200" width="'+(0)+'" height="30"/>';});}
+ });
+ [70,160,250].forEach(function(c){s+='<rect x="'+(400+c-20)+'" y="198" width="26" height="34" fill="#efe7d4" stroke="#d27e96" stroke-width="3"/><path d="M'+(400+c-7)+' 96 V190" stroke="#1f3f73" stroke-width="3" fill="none" marker-end="url(#a)"/>'});
+ s+='<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f3f73"/></marker></defs>';
+ s+='<path d="M100 110 V170" stroke="#1f3f73" stroke-width="3"/><text x="52" y="196" font-size="30" fill="#a61e1e">✗</text>';
+ s+='<text x="20" y="420" font-size="16">Apical membrane: impermeable</text><text x="20" y="444" font-size="16">to water, so no reabsorption.</text><text x="400" y="420" font-size="16">ADH inserts aquaporin-2 channels;</text><text x="400" y="444" font-size="16">H₂O is reabsorbed by osmosis.</text><text x="400" y="480" font-size="16">Urine: small volume, concentrated</text><text x="400" y="504" font-size="16">(maximum 1400 mOsm).</text>';
+ return s+'</svg>'},
+resp:function(){var s=svgOpen(620,'Respiratory compensation for acidosis: more H plus is detected by chemoreceptors, ventilation increases, CO2 is blown off, and H plus falls');
+ var L=['↑ H⁺ : plasma becomes more acidic','Chemoreceptors detect the acidity','↑ Ventilation','↓ CO₂ (excess “blown off”)','↓ H⁺ : pH rises, less acidic'];
+ L.forEach(function(t,i){var y=24+i*108;s+='<rect x="60" y="'+y+'" width="640" height="68" rx="8" fill="'+(i==0?'#d27e96':i==4?'#2d5190':'#efe7d4')+'" stroke="#1f3f73" stroke-width="2"/><text x="380" y="'+(y+41)+'" text-anchor="middle" font-size="20" fill="'+(i==4?'#fff':'#1a1a17')+'">'+t+'</text>';if(i<4)s+='<path d="M380 '+(y+70)+' V'+(y+104)+'" stroke="#1f3f73" stroke-width="3" marker-end="url(#b)"/>'});
+ s+='<defs><marker id="b" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f3f73"/></marker></defs><text x="60" y="590" font-size="17">CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻</text>';
+ return s+'</svg>'}};
+function fig(s){if(s.fig==='tbl5')return t5()+'<p class="meta" style="font:500 21px var(--mono);margin-top:12px">'+esc(s.cap)+'</p>';var c=s.cap?'<figcaption>Source caption: '+esc(s.cap)+'</figcaption>':'';
+ if(s.fig==='tbl1'){return '<table class="t"><caption class="sr">Major body fluid compartments</caption><thead><tr><th>Compartment</th><th>Volume (L)</th><th>% of body fluid</th><th>% of body weight</th></tr></thead><tbody><tr><td>Total body fluid</td><td>42</td><td>100</td><td>60</td></tr><tr><td>Intracellular fluid (ICF)</td><td>28</td><td>67</td><td>40</td></tr><tr><td>Extracellular fluid (ECF)</td><td>14</td><td>33</td><td>20</td></tr><tr><td>Plasma</td><td>2.8</td><td>6.6 (20% of ECF)</td><td>4</td></tr><tr><td>Interstitial fluid</td><td>11.2</td><td>26.4 (80% of ECF)</td><td>16</td></tr></tbody></table><p class="meta" style="font:500 21px var(--mono);margin-top:12px">'+esc(s.cap)+'</p>'}
+ if(DIAG[s.fig])return '<figure class="fig">'+DIAG[s.fig]()+'<figcaption>Original diagram for this deck.'+(s.cap?' Related source caption: '+esc(s.cap):'')+'</figcaption></figure>';
+ return '<div class="ph" role="img" aria-label="Original diagram still to be added">Publisher figure not reproduced.<br>Original diagram to be added.<br>'+(s.cap?esc(s.cap):'See the source slide.')+'</div>'}
+function quiz(s,i){var q=s.quiz,o='';q.o.forEach(function(t,k){o+='<button class="opt" type="button" data-q="'+i+'" data-i="'+k+'" data-k="'+'ABCD'[k]+'">'+esc(t)+'</button>'});
+ return '<div class="quiz"><p class="q" id="q'+i+'">'+esc(q.q)+'</p><div class="opts" role="group" aria-labelledby="q'+i+'">'+o+'</div><div class="fb" id="fb'+i+'" role="status" aria-live="polite"></div></div>'}
+function ackOf(s){return s.n?ACK[s.ack]:'Original practice question (not in the source slides)'}
+
+/* --- build slides --- */
+var html='',sel='';
+D.forEach(function(s,i){var label=(s.n?s.n+'. ':'✎ ')+(s.t||'Slide '+s.n);sel+='<option value="'+i+'">'+esc(label.replace(/\+/g,'⁺'))+'</option>';
+ if(s.n===1){html+='<section class="slide cover" id="s'+i+'" aria-label="Slide 1: title"><div class="k">BIO353 · Week 11 · Chapter 15</div><div class="rl"></div><h1>Fluid and Acid–Base Balance</h1><div class="sub">Chapter 15</div><p class="hint">Use <kbd>→</kbd> and <kbd>←</kbd> to move, <kbd>C</kbd> for the readable companion, <kbd>?</kbd> for all keys. Red text marks the instructor’s notes.</p><aside class="panel"><h3>Three lines of defense</h3><div class="step"><em>1 · Immediate</em><strong>Buffering</strong></div><div class="step"><em>2 · Minutes</em><strong>Respiratory compensation</strong></div><div class="step"><em>3 · Hours to days</em><strong>Renal compensation</strong></div><div class="dot"></div></aside><div class="ref" style="color:#4d4a3d">'+ACK[s.ack]+'</div></section>';return}
+ var len=s.p?s.p.reduce(function(a,p){return a+p.r.reduce(function(b,r){return b+r[0].length},0)},0):0,hf=!!s.fig&&!s.quiz;
+ var cls='slide'+(hf?' has-fig':'')+((s.fig==='tbl1'||s.fig==='tbl5')?' tbl':'')+(hf&&!s.p.length?' nt':'')+(len>760?' xs':len>480?' sm':'')+(!hf&&s.p&&s.p.length>=10?' cols':'');
+ var body=s.quiz?quiz(s,i):(hf?'<div>'+(s.p.length?items(s):'')+'</div><div>'+fig(s)+'</div>':(s.p.length?items(s):''));
+ html+='<section class="'+cls+'" id="s'+i+'" role="group" aria-roledescription="slide" aria-label="Slide '+(i+1)+' of '+total+'"><div class="lab">'+esc(lab(s))+'</div><h2>'+esc((s.t||'').replace(/\+/g,'⁺').replace(/HCO3-/,'HCO₃⁻').replace(/H2O/,'H₂O'))+'</h2><div class="rule"></div><div class="body">'+body+'</div><div class="ref">'+ackOf(s)+'</div><div class="pg">'+(i+1)+' / '+total+'</div></section>'});
+stage.innerHTML=html;document.getElementById('jump').innerHTML=sel;
+var S=[].slice.call(stage.children);
+
+/* --- build companion --- */
+var c='<div class="wrap"><h1 id="comp-start">Fluid and Acid–Base Balance</h1><p class="meta">BIO353 · Week 11 · Chapter 15 · readable companion to the slides</p><p>Every slide appears here in lecture order with its source-slide number. <span class="in">Red dotted text</span> is the instructor’s note. Practice questions marked ✎ are not in the original slides.</p><nav aria-label="Contents"><ol>';
+var lastSec='',nav='',body='';
+D.forEach(function(s,i){if(s.n===1)return;var id='c'+i;if(s.sec!==lastSec){lastSec=s.sec;body+='<h3 class="sec">'+esc(s.sec)+'</h3>';nav+='<li><a href="#'+id+'">'+esc(s.sec)+'</a></li>'}
+ var t=(s.t||'').replace(/\+/g,'⁺').replace(/HCO3-/,'HCO₃⁻').replace(/H2O/,'H₂O');
+ body+='<article id="'+id+'"><p class="meta">'+esc(lab(s).split(' · ')[0])+'</p><h2>'+esc(t)+'</h2>'+(s.quiz?quiz(s,i+1000):'')+(s.p&&s.p.length?items(s):'')+(s.fig?fig(s):'')+'<p class="meta">'+ackOf(s)+'</p></article>'});
+c+=nav+'</ol></nav>'+body+'<div class="ack"><strong>Acknowledgments.</strong> '+ACK.c+' '+ACK.p+' Slide text and sequence follow the source PowerPoint; diagrams marked “original” were drawn for this deck.</div></div>';
+comp.innerHTML=c;
+/* quizzes in the companion use offset ids */
+D.forEach(function(s,i){if(s.quiz){var o=comp.querySelector('#fb'+(i+1000));if(o)o.setAttribute('data-src',i)}});
+
+/* --- scaling, navigation, state --- */
+function fit(){var vp=document.getElementById('vp'),w=vp.clientWidth,h=vp.clientHeight,k=Math.min(w/1920,h/1080);stage.style.transform='translate('+((w-1920*k)/2)+'px,'+((h-1080*k)/2)+'px) scale('+k+')'}
+function go(n,noHash){cur=Math.max(0,Math.min(total-1,n));S.forEach(function(el,i){var on=i===cur;el.classList.toggle('active',on);el.setAttribute('aria-hidden',on?'false':'true')});
+ document.getElementById('ct').textContent='Slide '+(cur+1)+' of '+total;document.getElementById('jump').value=cur;document.getElementById('prev').disabled=cur===0;document.getElementById('next').disabled=cur===total-1;
+ if(!noHash&&!document.body.classList.contains('companion'))history.replaceState(null,'','#s'+(cur+1))}
+function setComp(on){document.body.classList.toggle('companion',on);var b=document.getElementById('cv');b.setAttribute('aria-pressed',on);b.textContent=on?'Slide view':'Companion view';
+ history.replaceState(null,'',on?'#companion':'#s'+(cur+1));if(on)comp.focus();else fit()}
+function toggleHelp(f){var h=document.getElementById('help');var show=f===undefined?h.hidden:f;h.hidden=!show;document.getElementById('hp').setAttribute('aria-expanded',show)}
+document.getElementById('prev').onclick=function(){go(cur-1)};document.getElementById('next').onclick=function(){go(cur+1)};
+document.getElementById('jump').onchange=function(e){go(+e.target.value)};
+document.getElementById('cv').onclick=function(){setComp(!document.body.classList.contains('companion'))};
+document.getElementById('hp').onclick=function(){toggleHelp()};
+document.getElementById('nt').onclick=function(){var off=document.body.classList.toggle('hidein');this.setAttribute('aria-pressed',!off)};
+document.addEventListener('keydown',function(e){if(e.ctrlKey||e.metaKey||e.altKey)return;var t=e.target.tagName,k=e.key,comp_=document.body.classList.contains('companion');
+ if(k==='Escape'){toggleHelp(false);return}
+ if(t==='SELECT')return;
+ if(k==='c'||k==='C'){setComp(!comp_);return}if(k==='n'||k==='N'){document.getElementById('nt').click();return}if(k==='?'){toggleHelp();return}
+ if(comp_)return;
+ if(k==='ArrowRight'||k==='PageDown'||(k===' '&&t!=='BUTTON')){e.preventDefault();go(cur+1)}
+ else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();go(cur-1)}
+ else if(k==='Home'){e.preventDefault();go(0)}else if(k==='End'){e.preventDefault();go(total-1)}});
+/* swipe on touch screens */
+var tx=null;stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+stage.addEventListener('touchend',function(e){if(tx===null)return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>60)go(cur+(d<0?1:-1));tx=null});
+/* knowledge-check answers (works in both views) */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.opt');if(!b)return;var i=+b.dataset.q,real=i>=1000?i-1000:i,q=D[real].quiz,k=+b.dataset.i,root=b.closest('.quiz'),ok=k===q.a;
+ [].forEach.call(root.querySelectorAll('.opt'),function(o,j){o.classList.remove('ok','no');if(j===q.a&&ok)o.classList.add('ok');if(j===k&&!ok)o.classList.add('no')});
+ root.querySelector('.fb').innerHTML=ok?'<strong>Correct.</strong> '+esc(q.e):'<strong>Not quite.</strong> Try another option. When you are ready: '+esc(q.e)});
+function route(){var h=location.hash;if(h==='#companion'){setComp(true);return}var m=/^#s(\d+)$/.exec(h);if(document.body.classList.contains('companion'))setComp(false);go(m?+m[1]-1:cur,true)}
+addEventListener('resize',fit);addEventListener('hashchange',route);fit();route();if(!/^#/.test(location.hash))go(0,true);
+</script>
+</body>
+</html>
